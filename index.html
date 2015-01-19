@@ -1,1 +1,711 @@
-Hello World!!!
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>WPS Note REST API</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  margin-left: 3px;
+  color: #c7254e;
+  background-color: rgba(255,255,255,0.7);
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item:hover {
+  background-color: #f8f8f8;
+  border-left: 2px solid #555;
+  padding-left: 15px;
+}
+.indent {
+  display: block;
+  text-indent: 16px;
+}
+.list-group-item {
+  padding-left: 16px;
+}
+.list-group-item .toggle .open {
+  display: block;
+}
+.list-group-item .toggle .closed {
+  display: none;
+}
+.list-group-item.collapsed .toggle .open {
+  display: none;
+}
+.list-group-item.collapsed .toggle .closed {
+  display: block;
+}
+a.list-group-item {
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  font-size: 15px;
+  background-color: #f5f5f5;
+}
+a.list-group-item.heading:hover {
+  background-color: #f8f8f8;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+.list-group-item a span.closed {
+  display: none;
+}
+.list-group-item a span.open {
+  display: block;
+}
+.list-group-item a.collapsed span.closed {
+  display: block;
+}
+.list-group-item a.collapsed span.open {
+  display: none;
+}
+#nav {
+  width: inherit;
+  margin-top: 38px;
+  max-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    max-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a data-toggle="" data-target="#-menu" href="#" class="list-group-item heading collapsed">Resource Group</a><div id="-menu"><a href="#-wps-note-api-root" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>WPS Note API Root</a></div></div><div class="list-group"><a data-toggle="" data-target="#message-and-resource-menu" href="#message-and-resource" class="list-group-item heading collapsed">Message and Resource</a><div id="message-and-resource-menu"><a href="#message-and-resource-messages" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Messages</a><a href="#message-and-resource-messages-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">get messages</span></a><a href="#message-and-resource-messages-post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">create a message</span></a><a href="#message-and-resource-messages-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete all message matched conditions</span></a><a href="#message-and-resource-messages-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Messages Properties</a><a href="#message-and-resource-message" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Message</a><a href="#message-and-resource-message-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">get a message</span></a><a href="#message-and-resource-message-put" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-warning"><i class="fa fa-pencil"></i></span><span class="indent">update a message</span></a><a href="#message-and-resource-message-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete a message</span></a><a href="#message-and-resource-message-copy" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Message Copy</a><a href="#message-and-resource-message-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Message Properties</a><a href="#message-and-resource-resources" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Resources</a><a href="#message-and-resource-resources-post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">create resource</span></a><a href="#message-and-resource-resources-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete resources</span></a><a href="#message-and-resource-resources-statistics" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Resources statistics</a><a href="#message-and-resource-resources-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Resources Properties</a><a href="#message-and-resource-resources-md5s" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Resources Md5s</a><a href="#message-and-resource-resource" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Resource</a><a href="#message-and-resource-resource-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">download resource</span></a><a href="#message-and-resource-resource-put" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-warning"><i class="fa fa-pencil"></i></span><span class="indent">update resource</span></a><a href="#message-and-resource-resource-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete resource</span></a><a href="#message-and-resource-resource-url" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Resource Url</a><a href="#message-and-resource-copy-resource" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Copy Resource</a><a href="#message-and-resource-move-resource" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Move Resource</a><a href="#message-and-resource-resource-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Resource Properties</a><a href="#message-and-resource-resource-properties-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">get resource properties</span></a><a href="#message-and-resource-resource-properties-put" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-warning"><i class="fa fa-pencil"></i></span><span class="indent">update resource properties fully</span></a><a href="#message-and-resource-ping" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Ping</a></div></div><div class="list-group"><a data-toggle="" data-target="#folder-menu" href="#folder" class="list-group-item heading collapsed">Folder</a><div id="folder-menu"><a href="#folder-folders" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Folders</a><a href="#folder-folders-post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">create folder</span></a><a href="#folder-folders-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete all folders</span></a><a href="#folder-folders-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Folders Properties</a><a href="#folder-folder" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Folder</a><a href="#folder-folder-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">list sub folders</span></a><a href="#folder-folder-delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">delete folder</span></a><a href="#folder-folder-copy" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Folder Copy</a><a href="#folder-folder-move" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Folder Move</a><a href="#folder-folder-properties" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Folder Properties</a><a href="#folder-folder-properties-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">get folder properties</span></a><a href="#folder-folder-properties-put" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-warning"><i class="fa fa-pencil"></i></span><span class="indent">update folder properties</span></a><a href="#folder-ping" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Ping</a></div></div><div class="list-group"><a data-toggle="" data-target="#formats-menu" href="#formats" class="list-group-item heading collapsed">Formats</a><div id="formats-menu"><a href="#formats-formats" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Formats</a><a href="#formats-format" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Format</a><a href="#formats-message-conversion" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Message Conversion</a><a href="#formats-resource-conversion" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Resource Conversion</a><a href="#formats-ping" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Ping</a></div></div><div class="list-group"><a data-toggle="" data-target="#share-menu" href="#share" class="list-group-item heading collapsed">Share</a><div id="share-menu"><a href="#share-message-share" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Message Share</a><a href="#share-resource-share" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Resource Share</a><a href="#share-ping" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Ping</a></div></div></nav></div><div class="col-md-8"><div><header><div class="page-header"><h1 id="top">WPS Note REST API</h1></div></header><div class="description"></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="">Resource Group&nbsp;<a href="#"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="-wps-note-api-root">WPS Note API Root&nbsp;<a href="#-wps-note-api-root"><i class="fa fa-link"></i></a></h4><p>WPS Note API entry point.
+This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and HAL links.</p>
+<section id="-wps-note-api-root-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Entry Point</span></div><div style="float:left"><a href="#-wps-note-api-root-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#050429390dbd101513a0d2621149a40a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="050429390dbd101513a0d2621149a40a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/hal+json</span><br><span class="hljs-attribute">Link</span>: <span class="hljs-string">&lt;http:/api.wps.cn/&gt;;rel="self"</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">_links</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">self</span>": <span class="hljs-value">{ "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"/"</span> </span>}</span>,
+    }
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="message-and-resource">Message and Resource&nbsp;<a href="#message-and-resource"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="message-and-resource-messages">Messages&nbsp;<a href="#message-and-resource-messages"><i class="fa fa-link"></i></a></h4><p>Message Collection</p>
+<section id="message-and-resource-messages-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get messages</span></div><div style="float:left"><a href="#message-and-resource-messages-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages</code></div></div><div class="panel-body"><p>Get all messages matched condintions.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="message-and-resource-messages-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">create a message</span></div><div style="float:left"><a href="#message-and-resource-messages-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/messages</code></div></div><div class="panel-body"><p>Create a message.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#21a36d255667d160a22f5cebf93cca6c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="21a36d255667d160a22f5cebf93cca6c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#55919873a2442988def30870f3378674" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="55919873a2442988def30870f3378674" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-messages-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete all message matched conditions</span></div><div style="float:left"><a href="#message-and-resource-messages-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/messages</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#5bc3a87c48531ca110082c0a23d0ce94" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="5bc3a87c48531ca110082c0a23d0ce94" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="message-and-resource-messages-properties">Messages Properties&nbsp;<a href="#message-and-resource-messages-properties"><i class="fa fa-link"></i></a></h4><p>Message clollection properties.
+It has the following attributes:</p>
+<ul>
+<li><p>count</p></li>
+<li><p>deleted_count</p></li>
+</ul>
+<section id="message-and-resource-messages-properties-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get message collection properties</span></div><div style="float:left"><a href="#message-and-resource-messages-properties-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#049a9fb7284f763883be21688e72f663" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="049a9fb7284f763883be21688e72f663" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/hal+json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+    "<span class="hljs-attribute">deleted_count</span>": <span class="hljs-value"><span class="hljs-string">"0"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-message">Message&nbsp;<a href="#message-and-resource-message"><i class="fa fa-link"></i></a></h4><p>Message related.</p>
+<section id="message-and-resource-message-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get a message</span></div><div style="float:left"><a href="#message-and-resource-message-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}</code></div></div><div class="panel-body"><p>Get a message that can getting its resources.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>UUID</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>message id</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#779ebba01bd12941b4404f660bb78afe" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="779ebba01bd12941b4404f660bb78afe" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">include_resources</span>": <span class="hljs-value"><span class="hljs-string">"true/false"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="message-and-resource-message-put" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">update a message</span></div><div style="float:left"><a href="#message-and-resource-message-put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/messages/{id}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>UUID</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>message id</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#3771a32548e97f78c05d6a86c3c7cb2c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="3771a32548e97f78c05d6a86c3c7cb2c" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ebd90be712720734836d4ca6c812a3e8" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="ebd90be712720734836d4ca6c812a3e8" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-message-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete a message</span></div><div style="float:left"><a href="#message-and-resource-message-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/messages/{id}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>UUID</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>message id</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="message-and-resource-message-copy">Message Copy&nbsp;<a href="#message-and-resource-message-copy"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-message-copy-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">copy a message</span></div><div style="float:left"><a href="#message-and-resource-message-copy-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/messages/{id}/copy</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>UUID</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>message id</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#8326de499bbfe50c252a022c7c99de76" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="8326de499bbfe50c252a022c7c99de76" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">dest_folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ef39a536ef56517d75eebc61ac18f1bf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="ef39a536ef56517d75eebc61ac18f1bf" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-message-properties">Message Properties&nbsp;<a href="#message-and-resource-message-properties"><i class="fa fa-link"></i></a></h4><p>Message Properties.
+It has the following attributes:</p>
+<ul>
+<li><p>id</p></li>
+<li><p>name</p></li>
+<li><p>folderId</p></li>
+<li><p>resourceCount</p></li>
+<li><p>lastUpdateTime</p></li>
+<li><p>createdTime</p></li>
+<li><p>size</p></li>
+<li><p>sate[normal, deleted, purged]</p></li>
+<li><p>type[Note, Mail, SharedNote, CompoundFile]</p></li>
+<li><p>description</p></li>
+<li><p>startResourceId</p></li>
+<li><p>shareUrl</p></li>
+<li><p>usn</p></li>
+</ul>
+<section id="message-and-resource-message-properties-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get message properties</span></div><div style="float:left"><a href="#message-and-resource-message-properties-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/message/{id}/properties</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>UUID</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>message id</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b494fdf424c104af91284adbec919630" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b494fdf424c104af91284adbec919630" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-resources">Resources&nbsp;<a href="#message-and-resource-resources"><i class="fa fa-link"></i></a></h4><p>Resource Collection.</p>
+<section id="message-and-resource-resources-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">create resource</span></div><div style="float:left"><a href="#message-and-resource-resources-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/messages/{id}/resources</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#81596480843fe3dab4499a36c246b66b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="81596480843fe3dab4499a36c246b66b" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-resources-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete resources</span></div><div style="float:left"><a href="#message-and-resource-resources-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/messages/{id}/resources</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="message-and-resource-resources-statistics">Resources statistics&nbsp;<a href="#message-and-resource-resources-statistics"><i class="fa fa-link"></i></a></h4><p>Resource Collection.
+It has following properties:</p>
+<ul>
+<li><p>messageId</p></li>
+<li><p>count</p></li>
+<li><p>deletedCount</p></li>
+</ul>
+<section id="message-and-resource-resources-statistics-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get collection properties</span></div><div style="float:left"><a href="#message-and-resource-resources-statistics-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/resources/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e6eb38d00fd9718671aa5229e88898b9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e6eb38d00fd9718671aa5229e88898b9" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">deletedCount</span>": <span class="hljs-value"><span class="hljs-string">"0"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-resources-properties">Resources Properties&nbsp;<a href="#message-and-resource-resources-properties"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-resources-properties-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get resources properties</span></div><div style="float:left"><a href="#message-and-resource-resources-properties-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6be924f2ac001f9e0c222aa4d02f2fe6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="6be924f2ac001f9e0c222aa4d02f2fe6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">properties_collection</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+            "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+            "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+            "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+            "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+            <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span>
+        </span>}
+    ]
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-resources-md5s">Resources Md5s&nbsp;<a href="#message-and-resource-resources-md5s"><i class="fa fa-link"></i></a></h4><p>Resource md5 Collection.
+It has following properties:</p>
+<ul>
+<li><p>messageId</p></li>
+<li><p>count</p></li>
+<li><p>deletedCount</p></li>
+</ul>
+<section id="message-and-resource-resources-md5s-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get Md5 collection</span></div><div style="float:left"><a href="#message-and-resource-resources-md5s-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/md5s</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ed8cfa825040232ae6ed7481a282c52b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="ed8cfa825040232ae6ed7481a282c52b" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">properties</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">resourceId</span>": <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+            "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"md5 base64 string"</span></span>,
+        }
+    ]
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-resource">Resource&nbsp;<a href="#message-and-resource-resource"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-resource-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">download resource</span></div><div style="float:left"><a href="#message-and-resource-resource-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fa65420bfbb68d70b8272a1e37de1714" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fa65420bfbb68d70b8272a1e37de1714" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">properties_collection</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+            "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+            "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+            "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+            "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+            <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span>
+        </span>}
+    ]</span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"binary data"</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-resource-put" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">update resource</span></div><div style="float:left"><a href="#message-and-resource-resource-put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#05753ba90f4547cc8e765c61cdcfc79c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="05753ba90f4547cc8e765c61cdcfc79c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">properties_collection</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+            "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+            "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+            "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+            "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+            "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+            <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span>
+        </span>}
+    ]</span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"binary data"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#7d63f81a149914c340e06283bc4aa1a7" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7d63f81a149914c340e06283bc4aa1a7" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-resource-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete resource</span></div><div style="float:left"><a href="#message-and-resource-resource-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="message-and-resource-resource-url">Resource Url&nbsp;<a href="#message-and-resource-resource-url"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-resource-url-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get resource url</span></div><div style="float:left"><a href="#message-and-resource-resource-url-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}/url</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#dfddeee1c80cdec914654c93ed6a9937" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="dfddeee1c80cdec914654c93ed6a9937" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">url_pair</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+            "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+        }
+    ]</span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"binary data"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-copy-resource">Copy Resource&nbsp;<a href="#message-and-resource-copy-resource"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-copy-resource-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">copy resource</span></div><div style="float:left"><a href="#message-and-resource-copy-resource-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}/copy</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#7972d6248c68c53c85a63d444c015cdf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7972d6248c68c53c85a63d444c015cdf" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">dest_folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c263fc3dcc39685c414a0bdd9390fc76" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c263fc3dcc39685c414a0bdd9390fc76" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-move-resource">Move Resource&nbsp;<a href="#message-and-resource-move-resource"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-move-resource-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">move resource</span></div><div style="float:left"><a href="#message-and-resource-move-resource-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}/move</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#f2ed51b9b0abab1ce99b8c0fcd2b9838" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f2ed51b9b0abab1ce99b8c0fcd2b9838" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">dest_folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#61049d15733f564deeecc9f2f1ced2ed" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="61049d15733f564deeecc9f2f1ced2ed" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-resource-properties">Resource Properties&nbsp;<a href="#message-and-resource-resource-properties"><i class="fa fa-link"></i></a></h4><p>Resource Properties.
+It has following properties:</p>
+<ul>
+<li><p>id</p></li>
+<li><p>name</p></li>
+<li><p>mime</p></li>
+<li><p>size</p></li>
+<li><p>md5</p></li>
+<li><p>lastUpdateTime</p></li>
+<li><p>createdTime</p></li>
+<li><p>messageId</p></li>
+<li><p>location</p></li>
+<li><p>sate[normal, deleted, purged],</p></li>
+<li><p>description,</p></li>
+<li><p>shareUrl</p></li>
+</ul>
+<section id="message-and-resource-resource-properties-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get resource properties</span></div><div style="float:left"><a href="#message-and-resource-resource-properties-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#f729fcc8487b3ee8c5e46419dccafb1f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f729fcc8487b3ee8c5e46419dccafb1f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><section id="message-and-resource-resource-properties-put" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">update resource properties fully</span></div><div style="float:left"><a href="#message-and-resource-resource-properties-put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/messages/{id}/resources/{id}/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#e6486c81f98f61bfceb28126fe757d7f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e6486c81f98f61bfceb28126fe757d7f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e184fc7afe786b24c338aa5e0a8cb301" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e184fc7afe786b24c338aa5e0a8cb301" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="message-and-resource-ping">Ping&nbsp;<a href="#message-and-resource-ping"><i class="fa fa-link"></i></a></h4><section id="message-and-resource-ping-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">ping</span></div><div style="float:left"><a href="#message-and-resource-ping-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/messages/ping</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c5130f6b8e0f47a4b8b6be649adc4535" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c5130f6b8e0f47a4b8b6be649adc4535" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-collection">{
+        <span class="hljs-string">"OK"</span>
+    }</span>
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="folder">Folder&nbsp;<a href="#folder"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Folder related resource.</p>
+<h4 id="folder-folders">Folders&nbsp;<a href="#folder-folders"><i class="fa fa-link"></i></a></h4><section id="folder-folders-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">create folder</span></div><div style="float:left"><a href="#folder-folders-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/folders</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0f9ea121a7e89c1a1e79a8e35d1ed951" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0f9ea121a7e89c1a1e79a8e35d1ed951" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#0354b9d956d064d446dc123d787d946c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0354b9d956d064d446dc123d787d946c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li></ul></section><section id="folder-folders-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete all folders</span></div><div style="float:left"><a href="#folder-folders-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/folders</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="folder-folders-properties">Folders Properties&nbsp;<a href="#folder-folders-properties"><i class="fa fa-link"></i></a></h4><h4 id="folder-folder">Folder&nbsp;<a href="#folder-folder"><i class="fa fa-link"></i></a></h4><section id="folder-folder-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list sub folders</span></div><div style="float:left"><a href="#folder-folder-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/folders/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#f8bb02978564e772c9af08c5ee3aa2a9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f8bb02978564e772c9af08c5ee3aa2a9" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">recursive</span>": <span class="hljs-value"><span class="hljs-string">"false"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#53fb41bb7b70f80ca32fb8118ad08c8f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="53fb41bb7b70f80ca32fb8118ad08c8f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+        <span class="hljs-string">"data"</span>: [
+            {
+                <span class="hljs-string">"id"</span>: <span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>,
+                <span class="hljs-keyword">...</span>
+            },
+            {
+                <span class="hljs-string">"id"</span>: <span class="hljs-string">"A527B8A6-2EF2-1B2E-1B85-57F86C05696C"</span>,
+                <span class="hljs-keyword">...</span>
+            },
+            {
+                <span class="hljs-string">"id"</span>: <span class="hljs-string">"040A6B2E-A6EF-A770-F75B-6C8BF2A24306"</span>,
+                <span class="hljs-keyword">...</span>
+            }
+        ]
+    }
+</code></pre></li></ul></section><section id="folder-folder-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">delete folder</span></div><div style="float:left"><a href="#folder-folder-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/folders/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="folder-folder-copy">Folder Copy&nbsp;<a href="#folder-folder-copy"><i class="fa fa-link"></i></a></h4><section id="folder-folder-copy-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">copy folder</span></div><div style="float:left"><a href="#folder-folder-copy-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/folders/{id}/copy</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#d10315d963df83252c8f560f0b7942a7" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d10315d963df83252c8f560f0b7942a7" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">dest_folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a39dc5cf43aa71684c0f8a5cf8287900" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a39dc5cf43aa71684c0f8a5cf8287900" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="folder-folder-move">Folder Move&nbsp;<a href="#folder-folder-move"><i class="fa fa-link"></i></a></h4><section id="folder-folder-move-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">move folder</span></div><div style="float:left"><a href="#folder-folder-move-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/folders/{id}/move</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#897102bd372bbbccbeba1163d8711c08" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="897102bd372bbbccbeba1163d8711c08" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">dest_folder_id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fdf6c578b8e71eb84053737dd6c35439" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fdf6c578b8e71eb84053737dd6c35439" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="folder-folder-properties">Folder Properties&nbsp;<a href="#folder-folder-properties"><i class="fa fa-link"></i></a></h4><p>It has following properties:</p>
+<ul>
+<li><p>id</p></li>
+<li><p>parentId</p></li>
+<li><p>path</p></li>
+<li><p>state[normal, deleted, purged]</p></li>
+<li><p>description</p></li>
+</ul>
+<section id="folder-folder-properties-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get folder properties</span></div><div style="float:left"><a href="#folder-folder-properties-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/folders/{id}/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#0ef8040466342639af5c9fe41b3610c9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0ef8040466342639af5c9fe41b3610c9" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li></ul></section><section id="folder-folder-properties-put" class="panel panel-warning"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">update folder properties</span></div><div style="float:left"><a href="#folder-folder-properties-put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/folders/{id}/properties</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#354947370ed61491f5bb9886e7420110" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="354947370ed61491f5bb9886e7420110" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#202b94e46074618c10534a31dff20ea4" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="202b94e46074618c10534a31dff20ea4" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">parentId</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span>
+    <span class="hljs-string">"path"</span>: <span class="hljs-string">"/media"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of folder"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="folder-ping">Ping&nbsp;<a href="#folder-ping"><i class="fa fa-link"></i></a></h4><section id="folder-ping-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">ping</span></div><div style="float:left"><a href="#folder-ping-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/folders/ping</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9359946b879e7ccc4986a6cdb102aeae" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9359946b879e7ccc4986a6cdb102aeae" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-collection">{
+        <span class="hljs-string">"OK"</span>
+    }</span>
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="formats">Formats&nbsp;<a href="#formats"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="formats-formats">Formats&nbsp;<a href="#formats-formats"><i class="fa fa-link"></i></a></h4><section id="formats-formats-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list all support formats</span></div><div style="float:left"><a href="#formats-formats-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/formats</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#354c816324eb24736302276a0ab09b44" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="354c816324eb24736302276a0ab09b44" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"data"</span>: [
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"note_message"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"mail"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"png"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"pptx"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"pdf"</span>,
+            <span class="hljs-keyword">...</span>
+        }
+}
+</code></pre></li></ul></section><h4 id="formats-format">Format&nbsp;<a href="#formats-format"><i class="fa fa-link"></i></a></h4><section id="formats-format-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list support formats can convert from</span></div><div style="float:left"><a href="#formats-format-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/formats/{id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c9af936a92b032126d81c5aa9f965991" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c9af936a92b032126d81c5aa9f965991" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"data"</span>: [
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"note_message"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"mail"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"png"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"pptx"</span>,
+            <span class="hljs-keyword">...</span>
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-string">"pdf"</span>,
+            <span class="hljs-keyword">...</span>
+        }
+}
+</code></pre></li></ul></section><h4 id="formats-message-conversion">Message Conversion&nbsp;<a href="#formats-message-conversion"><i class="fa fa-link"></i></a></h4><section id="formats-message-conversion-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">convert message to dest format</span></div><div style="float:left"><a href="#formats-message-conversion-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/formats/{format_id}/conversion/{dest_format_id}/messages/{message_id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e8158c47046b965892f9b22d783fb24a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e8158c47046b965892f9b22d783fb24a" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="formats-resource-conversion">Resource Conversion&nbsp;<a href="#formats-resource-conversion"><i class="fa fa-link"></i></a></h4><section id="formats-resource-conversion-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">convert resource to dest format</span></div><div style="float:left"><a href="#formats-resource-conversion-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/formats/{format_id}/conversion/{dest_format_id}/resources/{resource_id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#2b938ffd643d7c0ad87142bfd313d925" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="2b938ffd643d7c0ad87142bfd313d925" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="formats-ping">Ping&nbsp;<a href="#formats-ping"><i class="fa fa-link"></i></a></h4><section id="formats-ping-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">ping</span></div><div style="float:left"><a href="#formats-ping-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/formats/ping</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fb0721b78a516de048e261d2af147db8" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fb0721b78a516de048e261d2af147db8" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-collection">{
+        <span class="hljs-string">"OK"</span>
+    }</span>
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="share">Share&nbsp;<a href="#share"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="share-message-share">Message Share&nbsp;<a href="#share-message-share"><i class="fa fa-link"></i></a></h4><section id="share-message-share-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">share a message</span></div><div style="float:left"><a href="#share-message-share-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/shares/messages</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#81610d0c87c73a5d15162cd9c48569bf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="81610d0c87c73a5d15162cd9c48569bf" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">expiredTime</span>": <span class="hljs-value"><span class="hljs-string">"65536"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#96daa6a3091aae73733a32db91a1b98e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="96daa6a3091aae73733a32db91a1b98e" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"AE085055-33BB-8D41-9B0D-824F7429CE3E"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"message name"</span></span>,
+    "<span class="hljs-attribute">folderId</span>": <span class="hljs-value"><span class="hljs-string">"BF42FF82-5AF6-F873-694F-5C95CC329E23"</span></span>,
+    "<span class="hljs-attribute">resourceCount</span>": <span class="hljs-value"><span class="hljs-string">"10"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"10240"</span></span>,
+    "<span class="hljs-attribute">sate</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"note"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of note"</span></span>,
+    "<span class="hljs-attribute">startResourceId</span>": <span class="hljs-value"><span class="hljs-string">"61973CEE-7AC5-38A1-859D-3B474C2703AF"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span></span>,
+    "<span class="hljs-attribute">usn</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="share-resource-share">Resource Share&nbsp;<a href="#share-resource-share"><i class="fa fa-link"></i></a></h4><section id="share-resource-share-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">share a resource</span></div><div style="float:left"><a href="#share-resource-share-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/shares/resources</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#31c018a39566aa304000175048890ff1" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="31c018a39566aa304000175048890ff1" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">expiredTime</span>": <span class="hljs-value"><span class="hljs-string">"65536"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#e75f2ff7c2897fd8573459c4e2f9444c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e75f2ff7c2897fd8573459c4e2f9444c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"resource name"</span></span>,
+    "<span class="hljs-attribute">mime</span>": <span class="hljs-value"><span class="hljs-string">"image/png"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-string">"4096000"</span></span>,
+    "<span class="hljs-attribute">md5</span>": <span class="hljs-value"><span class="hljs-string">"resource md5 base64 string"</span></span>,
+    "<span class="hljs-attribute">lastUpdateTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2014-12-19T02:15:15Z"</span></span>,
+    "<span class="hljs-attribute">messageId</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+    <span class="hljs-string">"location"</span>: <span class="hljs-string">"/medias/76A75BE8-4BFC-0F7D-9E8C-32BE18335E79"</span></span>,
+    "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"normal"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"description of resource"</span></span>,
+    "<span class="hljs-attribute">shareUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://..."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="share-ping">Ping&nbsp;<a href="#share-ping"><i class="fa fa-link"></i></a></h4><section id="share-ping-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">ping</span></div><div style="float:left"><a href="#share-ping-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/shares/ping</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#26ea247b80f0304a98120383579b9fce" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="26ea247b80f0304a98120383579b9fce" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    <span class="hljs-collection">{
+        <span class="hljs-string">"OK"</span>
+    }</span>
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 20 Dec 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script></html>
