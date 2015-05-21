@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="res/css/animate.min.css">
+
+    <style>
+        @keyframes rotate {
+            0% {
+                -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: none;
+                transform: none;
+            }
+            100% {
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: rotate3d(0, 0, 1, 720deg);
+                transform: rotate3d(0, 0, 1, 720deg);
+            }
+        }
+
+        .rotate {
+            -webkit-animation-name: rotate;
+            animation-name: rotate
+        }
+
+        .sprite {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+
+        .scene {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid red;
+            margin: 10px;
+        }
+    </style>
+    <script src="res/js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div id="scene" class="scene">
+
+</div>
+<embed src="res/svg/map.svg" width="300" height="100" type="image/svg+xml" pluginspage="http://www.adobe.com/svg/viewer/install/" />
+<script>
+    var scene = $('#scene');
+    var h_count = 10;
+    var v_count = 10;
+    for (var y = 0; y < v_count; ++y) {
+        var t = y * 36;
+        for (var x = 0; x < h_count; ++x) {
+            var l = x * 36;
+            scene.append('<embed class="sprite animated infinite rotate" src="res/svg/map.svg" type="image/svg+xml" pluginspage="http://www.adobe.com/svg/viewer/install/" />').children().last().css('left', l).css('top', t);
+        }
+    }
+</script>
+</body>
+</html>
